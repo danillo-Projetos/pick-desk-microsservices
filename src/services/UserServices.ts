@@ -1,4 +1,4 @@
-import { UserDto } from '../Dtos/UserDto';
+import { UserDto } from '../dtos/UserDto';
 import { UserRepository } from '../repositories/UserRepository';
 
 class UserService {
