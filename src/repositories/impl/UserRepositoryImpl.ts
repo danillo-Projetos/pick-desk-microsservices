@@ -1,3 +1,4 @@
+import { AuthDto } from '../../dtos/AuthDto';
 import { UserDto } from '../../dtos/UserDto';
 import { UserModel } from '../../models/UserModel';
 import { UserRepository } from '../UserRepository';
@@ -8,6 +9,7 @@ class UserRepositoryImpl implements UserRepository {
   constructor() {
     this.users = [];
   }
+  authenticate: (authDto: AuthDto) => void;
 
   public create(userDto: UserDto): void {
     const userModel = new UserModel();

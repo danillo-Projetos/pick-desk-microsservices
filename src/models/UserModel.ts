@@ -4,6 +4,7 @@ class UserModel {
   id?: string;
   name: string;
   email: string;
+  password: string;
   created_at: Date;
 
   constructor() {
@@ -12,9 +13,9 @@ class UserModel {
     }
     this.email = '';
     this.name = '';
-    this.created_at = null
+    this.password = '';
+    this.created_at = null;
   }
-
 }
 
 export { UserModel };

@@ -1,4 +1,5 @@
-export interface UserDto {
-  name: string;
+interface UserDto {
+  username: string;
   email: string;
 }
+export { UserDto };
