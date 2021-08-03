@@ -1,7 +1,7 @@
 import express from 'express';
-import { userRoutes } from './routes/users';
+import { router } from './routes';
 
 const app = express();
 app.use(express.json());
-app.use('/users', userRoutes);
-app.listen(8080, () => console.log('Server is runnig!'));
+app.use(router);
+app.listen(8080, () => console.log('Server is runnig in http://localhost:8080 !'));

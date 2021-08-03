@@ -11,11 +11,12 @@ class UserRepositoryImpl implements UserRepository {
   }
   authenticate: (authDto: AuthDto) => void;
 
-  public create(userDto: UserDto): void {
+  public create({ email, username }: UserDto): void {
     const userModel = new UserModel();
 
     Object.assign(userModel, {
-      ...userDto,
+      name: username,
+      email,
       created_at: new Date(),
     });
 
