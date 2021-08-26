@@ -1,5 +1,5 @@
 import { AuthDto } from '../../dtos/AuthDto';
-import { UserDto } from '../../dtos/UserDto';
+import { UserDto } from '../../dtos/Usuarios/UserDto';
 import { UserRepository } from '../../repositories/UserRepository';
 import { UserServices } from '../UserServices';
 

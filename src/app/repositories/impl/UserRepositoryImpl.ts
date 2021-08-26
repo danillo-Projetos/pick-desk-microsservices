@@ -1,10 +1,10 @@
 import { AuthDto } from '../../dtos/AuthDto';
-import { UserDto } from '../../dtos/UserDto';
-import { UserModel } from '../../models/UserModel';
+import { UserDto } from '../../dtos/Usuarios/UserDto';
+import { Usuario } from '../../entities/Usuario';
 import { UserRepository } from '../UserRepository';
 
 class UserRepositoryImpl implements UserRepository {
-  private users: UserModel[];
+  private users: Usuario[];
 
   constructor() {
     this.users = [];
@@ -12,22 +12,22 @@ class UserRepositoryImpl implements UserRepository {
   authenticate: (authDto: AuthDto) => void;
 
   public create({ email, username }: UserDto): void {
-    const userModel = new UserModel();
+    const usuario = new Usuario();
 
-    Object.assign(userModel, {
+    Object.assign(usuario, {
       name: username,
       email,
       created_at: new Date(),
     });
 
-    this.users.push(userModel);
+    this.users.push(usuario);
   }
 
-  public findAll(): UserModel[] {
+  public findAll(): Usuario[] {
     return this.users;
   }
 
-  public findByName(name: string): UserModel {
+  public findByName(name: string): Usuario {
     const user = this.users.find((u) => u.name === name);
 
     if (!name || !user) {

@@ -1,5 +1,5 @@
 import { AuthDto } from '../dtos/AuthDto';
-import { UserDto } from '../dtos/UserDto';
+import { UserDto } from '../dtos/Usuarios/UserDto';
 
 interface UserServices {
   createUser: (userDto: UserDto) => void,

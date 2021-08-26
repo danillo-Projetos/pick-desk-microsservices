@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import ldapjs, { ClientOptions } from 'ldapjs';
-import { UserDto } from '../dtos/UserDto';
+import { UserDto } from '../dtos/Usuarios/UserDto';
 import { UserRepositoryImpl } from '../repositories/impl/UserRepositoryImpl';
 import { UserServicesImpl } from '../services/impl/UserServicesImpl';
 

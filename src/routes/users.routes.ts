@@ -1,6 +1,6 @@
 /* eslint-disable implicit-arrow-linebreak */
 import { Router } from 'express';
-import { createUser, getUsers, authenticate } from '../modules/resources/UserResources';
+import { createUser, getUsers, authenticate } from '../app/resources/UserResources';
 
 const userRoutes = Router();
 

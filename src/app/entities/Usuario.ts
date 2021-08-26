@@ -1,6 +1,6 @@
 import { v4 as uuidV4 } from 'uuid';
 
-class UserModel {
+class Usuario {
   id?: string;
   name: string;
   email: string;
@@ -18,4 +18,4 @@ class UserModel {
   }
 }
 
-export { UserModel };
+export { Usuario };
