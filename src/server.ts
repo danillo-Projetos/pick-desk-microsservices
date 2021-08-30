@@ -6,5 +6,8 @@ import { Database } from './app/database';
 const app = express();
 app.use(express.json());
 app.use(router);
-Database.init();
-app.listen(8080, () => console.log('Server is runnig in http://localhost:8080 !'));
+
+app.listen(8080, () => {
+  Database.testConnectionMsSql();
+  console.log('Server is runnig in http://localhost:8080 !');
+});
