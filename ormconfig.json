@@ -5,6 +5,9 @@
   "password": "devSis2021",
   "database": "pick-desk",
   "port": 1433,
+  "options": {
+    "encrypt": false
+  },
   "synchronize": true,
   "logging": false,
   "migrations": ["./src/app/database/migrations/*.ts"],

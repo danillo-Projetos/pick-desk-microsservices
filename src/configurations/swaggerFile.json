@@ -9,7 +9,7 @@
       "email": "danillomiranda@sisconsultoria.com.br"
     },
     "servers": [
-      "http://localhost:8080"
+      "http://localhost:9090"
     ]
   },
   "host": "localhost:3000",
@@ -21,7 +21,7 @@
   "consumes": [],
   "produces": [],
   "paths": {
-    "/users": {
+    "/": {
       "post": {
         "tags": [
           "Usuários"
@@ -39,7 +39,7 @@
         "responses": {}
       }
     },
-    "/users/auth": {
+    "/auth": {
       "post": {
         "tags": [
           "Usuários"

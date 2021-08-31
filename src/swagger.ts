@@ -11,7 +11,7 @@ const swaggerOptions = {
       name: 'Danillo Miranda',
       email: 'danillomiranda@sisconsultoria.com.br',
     },
-    servers: ['http://localhost:8080'],
+    servers: ['http://localhost:9090'],
   },
 };
 

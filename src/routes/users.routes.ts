@@ -4,16 +4,16 @@ import { createUser, getUsers, authenticate } from '../app/resources/UserResourc
 
 const userRoutes = Router();
 
-userRoutes.post('/users', (() =>
+userRoutes.post('/', (() =>
   // #swagger.tags = ['Usuários']
   createUser
 ));
-userRoutes.get('/users', (() =>
+userRoutes.get('/', (() =>
   // #swagger.tags = ['Usuários']
   getUsers
 ));
 
-userRoutes.post('/users/auth', (() =>
+userRoutes.post('/auth', (() =>
   // #swagger.tags = ['Usuários']
   authenticate
 ));

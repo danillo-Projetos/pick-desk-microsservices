@@ -16,13 +16,12 @@ class UnidadeRepositoryImpl implements UnidadeRepository {
     await this.repository.save(unidade);
   }
 
-  public async findAll() {
+  public async findAll(): Promise<Array<UnidadeDto>> {
     const unidades = await this.repository.find();
-    const listaUnidadeDto: Array<UnidadeDto> = unidades.map(({ id, descricao }) => ({
+    return unidades.map(({ id, descricao }) => ({
       id,
       descricao,
     }));
-    return listaUnidadeDto;
   }
 
   public async findByName(nomeUnidade: string): Promise<UnidadeDto> {

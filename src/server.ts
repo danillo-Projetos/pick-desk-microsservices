@@ -8,6 +8,9 @@ app.use(express.json());
 app.use(router);
 
 app.listen(8080, () => {
-  Database.testConnectionMsSql();
-  console.log('Server is runnig in http://localhost:8080 !');
+  Database.init()
+    .then(() => console.log('Server is runnig in http://localhost:8080 !'))
+    .catch((error) => {
+      throw new Error(error);
+    });
 });
