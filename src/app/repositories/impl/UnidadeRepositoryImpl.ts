@@ -7,29 +7,43 @@ import { UnidadeRepository } from '../UnidadeRepository';
 class UnidadeRepositoryImpl implements UnidadeRepository {
   private repository: Repository<Unidade>;
 
-  private constructor() {
+  constructor() {
     this.repository = getRepository(Unidade);
   }
 
   public async create({ descricao }: InputUnidadeDto) {
     const unidade = this.repository.create({ descricao });
-    await this.repository.save(unidade);
+    try {
+      await this.repository.save(unidade);
+    } catch (erro) {
+      throw new Error(`Erro ao criar a unidade: ${erro}`);
+    }
   }
 
   public async findAll(): Promise<Array<UnidadeDto>> {
-    const unidades = await this.repository.find();
-    return unidades.map(({ id, descricao }) => ({
-      id,
-      descricao,
-    }));
+    try {
+      const unidades = await this.repository.find();
+      return unidades.map(({ id, descricao }) => ({
+        id,
+        descricao,
+      }));
+    } catch (erro) {
+      throw new Error(`Erro ao buscar as unidades: ${erro}`);
+    }
   }
 
   public async findByName(nomeUnidade: string): Promise<UnidadeDto> {
-    const { id, descricao } = await this.repository.findOne({ where: { descricao: nomeUnidade } });
-    if (!nomeUnidade || !id) {
-      return null;
+    try {
+      const { id, descricao } = await this.repository.findOne({
+        where: { descricao: nomeUnidade },
+      });
+      if (!id) {
+        throw new Error('Não há uma unidade registrada com essa descrição!');
+      }
+      return { id, descricao };
+    } catch (erro) {
+      throw new Error(`Erro ao tentar buscar uma unidade pela descrição forncecida: ${erro}`);
     }
-    return { id, descricao };
   }
 }
 
