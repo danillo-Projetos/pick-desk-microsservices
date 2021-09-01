@@ -1,5 +1,7 @@
+import HttpStatus, { getReasonPhrase } from 'http-status-codes';
 import { AuthDto } from '../../dtos/AuthDto';
 import { UserDto } from '../../dtos/Usuarios/UserDto';
+import { AppError } from '../../handlers/exceptions/AppError';
 import { UserRepository } from '../../repositories/UserRepository';
 import { UserServices } from '../UserServices';
 
@@ -10,7 +12,11 @@ class UserServicesImpl implements UserServices {
     const userExists = !!this.userRepository.findByName(username);
 
     if (userExists) {
-      throw new Error('User already exists!');
+      throw new AppError(
+        'Usuário já existe!',
+        getReasonPhrase(HttpStatus.BAD_REQUEST),
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     this.userRepository.create({ username, email });

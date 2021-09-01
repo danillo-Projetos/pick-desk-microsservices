@@ -27,7 +27,23 @@
           "Usuários"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {}
       },
       "get": {

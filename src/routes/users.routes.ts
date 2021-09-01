@@ -1,21 +1,17 @@
-/* eslint-disable implicit-arrow-linebreak */
 import { Router } from 'express';
 import { createUser, getUsers, authenticate } from '../app/resources/UserResources';
 
 const userRoutes = Router();
 
-userRoutes.post('/', (() =>
+userRoutes.post('/',
   // #swagger.tags = ['Usuários']
-  createUser
-));
-userRoutes.get('/', (() =>
+  createUser);
+userRoutes.get('/',
   // #swagger.tags = ['Usuários']
-  getUsers
-));
+  getUsers);
 
-userRoutes.post('/auth', (() =>
+userRoutes.post('/auth',
   // #swagger.tags = ['Usuários']
-  authenticate
-));
+  authenticate);
 
 export { userRoutes };

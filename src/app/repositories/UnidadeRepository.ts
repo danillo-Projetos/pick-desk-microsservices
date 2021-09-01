@@ -1,10 +1,10 @@
 import { InputUnidadeDto } from '../dtos/Unidades/InputUnidadeDto';
-import { UnidadeDto } from '../dtos/Unidades/UnidadeDto';
+import { Unidade } from '../entities/Unidade';
 
 interface UnidadeRepository {
-  findAll: () => Promise<Array<UnidadeDto>>;
-  findByName: (nomeUnidade: string) => Promise<UnidadeDto>;
-  create: (inputUnidadeDto: InputUnidadeDto) => void;
+  findAll: () => Promise<Array<Unidade>>;
+  findByName: (nomeUnidade: string) => Promise<Unidade>;
+  create: (inputUnidadeDto: InputUnidadeDto) => Promise<Unidade>;
 }
 
 export { UnidadeRepository };

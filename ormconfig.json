@@ -11,6 +11,9 @@
   "synchronize": true,
   "logging": false,
   "migrations": ["./src/app/database/migrations/*.ts"],
+  "entities": [
+    "./src/app/entities/**/*.ts"
+  ],
   "cli": {
     "migrationsDir": "./src/app/database/migrations"
   }

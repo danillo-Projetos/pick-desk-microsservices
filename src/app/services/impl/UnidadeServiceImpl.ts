@@ -1,24 +1,46 @@
+import HttpStatus, { getReasonPhrase } from 'http-status-codes';
+import { inject, injectable } from 'tsyringe';
 import { InputUnidadeDto } from '../../dtos/Unidades/InputUnidadeDto';
+import { UnidadeDto } from '../../dtos/Unidades/UnidadeDto';
+import { AppError } from '../../handlers/exceptions/AppError';
 import { UnidadeRepository } from '../../repositories/UnidadeRepository';
 import { UnidadeService } from '../UnidadeService';
 
+@injectable()
 class UnidadeServiceImpl implements UnidadeService {
-  constructor(private unidadeRepository: UnidadeRepository) {}
+  constructor(
+    @inject('UnidadeRepository')
+    private unidadeRepository: UnidadeRepository,
+  ) {}
 
-  criarUnidade({ descricao }: InputUnidadeDto) {
-    const isUnidadeExistente = !!(this.unidadeRepository.findByName(descricao));
+  async buscarUnidades(): Promise<Array<UnidadeDto>> {
+    const unidades = await this.unidadeRepository.findAll();
+
+    return unidades.map(({ id, descricao }) => ({
+      id,
+      descricao,
+    }));
+  }
+
+  async buscarUnidadePorDescricao(descricao: string): Promise<UnidadeDto> {
+    const unidade = await this.unidadeRepository.findByName(descricao);
+    return {
+      id: unidade.id,
+      descricao: unidade.descricao,
+    };
+  }
+
+  async criarUnidade({ descricao }: InputUnidadeDto): Promise<void> {
+    const isUnidadeExistente = !!(await this.buscarUnidadePorDescricao(descricao));
     if (isUnidadeExistente) {
-      throw new Error('Já existe uma unidade com esse nome');
+      throw new AppError(
+        'Já existe uma unidade com essa descrição!',
+        getReasonPhrase(HttpStatus.BAD_REQUEST),
+        HttpStatus.BAD_REQUEST,
+      );
+    } else {
+      await this.unidadeRepository.create({ descricao });
     }
-    this.unidadeRepository.create({ descricao });
-  }
-
-  buscarUnidades() {
-    return this.unidadeRepository.findAll();
-  }
-
-  buscarUnidadePorDescricao(descricao: string) {
-    return this.unidadeRepository.findByName(descricao);
   }
 }
 
